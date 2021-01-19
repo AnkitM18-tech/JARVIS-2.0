@@ -7,12 +7,36 @@ def speak(audio):
     engine.runAndWait()
 
 def tell_time():
-    time=dt.datetime.now().strftime("%H:%M:%S")
-    speak("The Current time is: "+ time)
+    time=dt.datetime.now().strftime("%H:%M:%S")   #24 hour format
+    #time=dt.datetime.now().strftime("%I:%M:%S")   #12 hour format
+    speak("The Current time is: ")
+    speak(time)
 
 def tell_date():
     date=dt.datetime.now().day
     month=dt.datetime.now().month
     year=dt.datetime.now().year
-    speak("The current date is :{} {} {}".format(date,month,year))
+    speak("The current date is")
+    speak(date)
+    speak(month)
+    speak(year)
+    
+def wish_me():
+    speak("Welcome Back Ankit!")
+    tell_date()
+    tell_time()
+
+    #greetings
+    hour=dt.datetime.now().hour
+
+    if hour>=6 and hour<12:
+        speak("Good Morning!")
+    elif hour>=12 and hour<18:
+        speak("Good Afternoon!")
+    elif hour>=18 and hour<24:
+        speak("Good Evening!")
+    else:
+        speak("Good Night!")
+
+    speak("JARVIS at your service sir! Please tell me how can I help you?")
 
