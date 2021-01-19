@@ -1,6 +1,8 @@
 import pyttsx3  as pt3            #pip install pyttsx3
 import datetime as dt             #in-built 
 import speech_recognition as sr   #pip install speechRecognition
+import wikipedia as wiki          #pip install wikipedia
+
 
 engine=pt3.init()
 
@@ -59,6 +61,8 @@ def take_command():
         return None
     return query
 
+
+
 if __name__=="__main__":
     wish_me()
     while True:
@@ -68,5 +72,12 @@ if __name__=="__main__":
         if "time" in query:
             tell_time()
 
-        if "date" in query:
+        elif "date" in query:
             tell_date()
+
+        elif "search in wikipedia" in query:
+            speak("Searching...")
+            query=query.replace("search in wikipedia","")
+            result=wiki.summary(query,sentences=3)
+            print(result)
+            speak(result)
