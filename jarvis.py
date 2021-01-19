@@ -59,4 +59,14 @@ def take_command():
         return None
     return query
 
-take_command()
+if __name__=="__main__":
+    wish_me()
+    while True:
+        query=take_command().lower()
+        #All Commands will be converted to lower case for easy query recognition
+
+        if "time" in query:
+            tell_time()
+
+        if "date" in query:
+            tell_date()
