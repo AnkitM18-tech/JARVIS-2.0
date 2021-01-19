@@ -10,3 +10,9 @@ def tell_time():
     time=dt.datetime.now().strftime("%H:%M:%S")
     speak("The Current time is: "+ time)
 
+def tell_date():
+    date=dt.datetime.now().day
+    month=dt.datetime.now().month
+    year=dt.datetime.now().year
+    speak("The current date is :{} {} {}".format(date,month,year))
+
