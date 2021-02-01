@@ -4,6 +4,7 @@ import speech_recognition as sr   #pip install speechRecognition
 import wikipedia as wiki          #pip install wikipedia
 import smtplib as smt             #pre-installed
 import webbrowser as wb           #in-built
+import psutil                     #pip install psutil
 
 
 engine=pt3.init()
@@ -72,6 +73,13 @@ def send_email(to,content):
     server.sendmail("username@gmail.com", to, content)
     server.close()
 
+def cpu_status():
+    usage=str(psutil.cpu_percent())
+    speak("CPU is at"+usage)
+    battery=psutil.sensors_battery()
+    speak("Battery is at")
+    speak(battery.percent)
+
 if __name__=="__main__":
     wish_me()
     while True:
@@ -123,3 +131,6 @@ if __name__=="__main__":
             search_term=take_command().lower()
             speak("Searching...")
             wb.open("https://www.google.com/search?q="+search_term)
+
+        elif "cpu" in query:
+            cpu_status()
