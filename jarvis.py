@@ -13,6 +13,7 @@ import json                       #in-built
 import requests                   #in-built
 from urllib.request import urlopen #in-built
 import wolframalpha as wfa        #pip install wolframalpha
+import time                       #in-built
 
 
 engine=pt3.init()
@@ -260,3 +261,9 @@ if __name__=="__main__":
                 speak(next(res.results).text)
             except StopIteration :
                 print("No results")
+
+        elif "stop listening" in query:
+            speak("For how many seconds you want me to stop listening to your commands sir?")
+            ans=int(take_command().lower().replace("seconds",""))
+            time.sleep(ans)
+            
