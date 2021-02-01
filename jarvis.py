@@ -202,3 +202,15 @@ if __name__=="__main__":
                 no=random.randint(1,100)
             
             os.startfile(os.path.join(songs_dir,music[no]))
+
+        elif "remember that" in query:
+            speak("What should I remember sir?")
+            memory=take_command().lower()
+            speak("You asked me to remember"+memory)
+            remember=open("memory.txt","w")
+            remember.write(memory)
+            remember.close()
+
+        elif "do you remember" in query:
+            file=open("memory.txt","r")
+            speak("You asked me to remember that "+file.read())
