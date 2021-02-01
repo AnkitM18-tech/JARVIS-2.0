@@ -267,3 +267,11 @@ if __name__=="__main__":
             ans=int(take_command().lower().replace("seconds",""))
             time.sleep(ans)
             
+        elif "log out" in query:
+            os.system("shutdown -l")
+
+        elif "restart" in query:
+            os.system("shutdown /r /t 1")
+
+        elif "shutdown" in query:
+            os.system("shutdown /s /t 1")
