@@ -117,3 +117,9 @@ if __name__=="__main__":
             search_term=take_command().lower()
             speak("Here we go to Youtube!")
             wb.open("https://www.youtube.com/results?search_query=" + search_term)
+
+        elif "search in google" in query:
+            speak("What should I search?")
+            search_term=take_command().lower()
+            speak("Searching...")
+            wb.open("https://www.google.com/search?q="+search_term)
