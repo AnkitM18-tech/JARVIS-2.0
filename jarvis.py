@@ -233,3 +233,9 @@ if __name__=="__main__":
                     i+=1
             except Exception as e:
                 print(str(e))
+
+        elif "where is" in query:
+            query=query.replace("where is","")
+            location=query
+            speak("User asked to locate"+location)
+            wb.open_new_tab("https://www.google.com/maps/place/"+location)
