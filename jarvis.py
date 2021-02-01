@@ -6,6 +6,7 @@ import smtplib as smt             #pre-installed
 import webbrowser as wb           #in-built
 import psutil                     #pip install psutil
 import pyjokes as pj              #pip install pyjokes
+import os                         #in-built
 
 
 engine=pt3.init()
@@ -141,3 +142,12 @@ if __name__=="__main__":
 
         elif "joke" in query:
             tell_joke()
+
+        elif "go offline" in query:
+            speak("Going offline sir!")
+            quit()
+
+        elif "word" in query:
+            speak("Opening MS Word")
+            ms_word=r"C:/Program Files (x86)/Microsoft Office/root/Office16/WINWORD.EXE"   #path of executable file
+            os.startfile(ms_word)
