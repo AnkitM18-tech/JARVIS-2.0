@@ -2,6 +2,7 @@ import pyttsx3  as pt3            #pip install pyttsx3
 import datetime as dt             #in-built 
 import speech_recognition as sr   #pip install speechRecognition
 import wikipedia as wiki          #pip install wikipedia
+import smtplib as smt             #pre-installed
 
 
 engine=pt3.init()
@@ -61,7 +62,14 @@ def take_command():
         return None
     return query
 
-
+def send_email(to,content):
+    server=smt.SMTP("smtp.gmail.com",587)
+    server.ehlo()
+    server.starttls()
+    #for this function to work, you need to set your gmail security low, which will be used as sender
+    server.login("username@gmail.com","password")
+    server.sendmail("username@gmail.com", to, content)
+    server.close()
 
 if __name__=="__main__":
     wish_me()
@@ -81,3 +89,17 @@ if __name__=="__main__":
             result=wiki.summary(query,sentences=3)
             print(result)
             speak(result)
+
+        elif "send email" in query:
+            try:
+                speak("What should I say?")
+                content=take_command()
+                #provide recipient email
+                receiver="receiver_is_me@gmail.com"
+                to=receiver
+                send_email(to,content)
+                speak(content)
+                speak("Email has been sent!")
+            except Exception as e:
+                print(e)
+                speak("Unable to send Email!")
