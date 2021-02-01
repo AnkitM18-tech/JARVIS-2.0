@@ -111,3 +111,9 @@ if __name__=="__main__":
             #chromepath is the location of your chrome's installation on your computer
             search=take_command().lower()
             wb.get(chromepath).open_new_tab(search+".com")       #websites ending with .com
+
+        elif "search in youtube" in query:
+            speak("What should I search?")
+            search_term=take_command().lower()
+            speak("Here we go to Youtube!")
+            wb.open("https://www.youtube.com/results?search_query=" + search_term)
