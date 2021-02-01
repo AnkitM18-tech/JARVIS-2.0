@@ -151,3 +151,24 @@ if __name__=="__main__":
             speak("Opening MS Word")
             ms_word=r"C:/Program Files (x86)/Microsoft Office/root/Office16/WINWORD.EXE"   #path of executable file
             os.startfile(ms_word)
+
+        elif "write a note" in query:
+            speak("What should I write, Sir?")
+            notes=take_command().lower()
+            file=open("notes.txt","w")
+            speak("Should I include date and time, sir?")
+            ans=take_command().lower()
+            if "yes" in ans or "sure" in ans:
+                strTime=dt.datetime.now().strftime("%H:%M:%S")
+                file.write(strTime)
+                file.write(":-")
+                file.write(notes)
+                speak("Done taking notes, Sir!")
+            else:
+                file.write(notes)
+
+        elif "show notes" in query:
+            speak("Showing Notes!")
+            file=open("notes.txt","r")
+            print(file.read())
+            speak(file.read())
