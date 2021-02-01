@@ -9,6 +9,9 @@ import pyjokes as pj              #pip install pyjokes
 import os                         #in-built
 import pyautogui as pag           #pip install pyautogui
 import random                     #in-built
+import json                       #in-built
+import requests                   #in-built
+from urllib.request import urlopen #in-built
 
 
 engine=pt3.init()
@@ -214,3 +217,19 @@ if __name__=="__main__":
         elif "do you remember" in query:
             file=open("memory.txt","r")
             speak("You asked me to remember that "+file.read())
+
+        elif "news" in query:
+            try:
+                jsonObj=urlopen("http://newsapi.org/v2/everything?q=tesla&from=2021-01-01&sortBy=publishedAt&apiKey=API_KEY")
+                data=json.load(jsonObj)
+                i=1
+
+                speak("Here are some top headlines from Tesla")
+                print("================TOP HEADLINES================"+"\n")
+                for item in data["articles"]:
+                    print(str(i)+". "+item["title"]+"\n")
+                    print(item["description"]+"\n")
+                    speak(item["title"])
+                    i+=1
+            except Exception as e:
+                print(str(e))
