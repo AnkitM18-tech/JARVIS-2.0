@@ -3,6 +3,7 @@ import datetime as dt             #in-built
 import speech_recognition as sr   #pip install speechRecognition
 import wikipedia as wiki          #pip install wikipedia
 import smtplib as smt             #pre-installed
+import webbrowser as wb           #in-built
 
 
 engine=pt3.init()
@@ -103,3 +104,10 @@ if __name__=="__main__":
             except Exception as e:
                 print(e)
                 speak("Unable to send Email!")
+
+        elif "search in chrome" in query:
+            speak("What should I search?")
+            chromepath="C:/Program Files/Google/Chrome/Application/chrome.exe %s"
+            #chromepath is the location of your chrome's installation on your computer
+            search=take_command().lower()
+            wb.get(chromepath).open_new_tab(search+".com")       #websites ending with .com
