@@ -12,9 +12,11 @@ import random                     #in-built
 import json                       #in-built
 import requests                   #in-built
 from urllib.request import urlopen #in-built
+import wolframalpha as wfa        #pip install wolframalpha
 
 
 engine=pt3.init()
+wolframa_id= "wolframa_app_id here"
 
 def speak(audio):
     engine.say(audio)
@@ -239,3 +241,12 @@ if __name__=="__main__":
             location=query
             speak("User asked to locate"+location)
             wb.open_new_tab("https://www.google.com/maps/place/"+location)
+
+        elif "calculate" in query:
+            client=wfa.Client(wolframa_id)
+            index=query.lower().split().index("calculate")
+            query=query.split()[index+1:]
+            res=client.query("".join(query))
+            answer=next(res.results).text
+            print("The answer is: "+answer)
+            speak("The answer is:"+answer)
