@@ -5,6 +5,7 @@ import wikipedia as wiki          #pip install wikipedia
 import smtplib as smt             #pre-installed
 import webbrowser as wb           #in-built
 import psutil                     #pip install psutil
+import pyjokes as pj              #pip install pyjokes
 
 
 engine=pt3.init()
@@ -80,6 +81,9 @@ def cpu_status():
     speak("Battery is at")
     speak(battery.percent)
 
+def tell_joke():
+    speak(pj.get_joke())
+
 if __name__=="__main__":
     wish_me()
     while True:
@@ -134,3 +138,6 @@ if __name__=="__main__":
 
         elif "cpu" in query:
             cpu_status()
+
+        elif "joke" in query:
+            tell_joke()
