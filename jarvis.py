@@ -250,3 +250,13 @@ if __name__=="__main__":
             answer=next(res.results).text
             print("The answer is: "+answer)
             speak("The answer is:"+answer)
+
+        elif "what is" in query or "who is" in query:
+            client=wfa.Client(wolframa_id)
+            res=client.query(query)
+
+            try:
+                print(next(res.results).text)
+                speak(next(res.results).text)
+            except StopIteration :
+                print("No results")
