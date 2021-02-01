@@ -8,6 +8,7 @@ import psutil                     #pip install psutil
 import pyjokes as pj              #pip install pyjokes
 import os                         #in-built
 import pyautogui as pag           #pip install pyautogui
+import random                     #in-built
 
 
 engine=pt3.init()
@@ -181,3 +182,23 @@ if __name__=="__main__":
 
         elif "screenshot" in query:
             take_screenshot()
+
+        elif "play song online" in query:
+            song_dir="C:/Users/ankit/AppData/Roaming/Spotify/Spotify.exe"
+            os.startfile(song_dir)
+
+        elif "play song offline" in query:
+            songs_dir="D:/Songs"
+            music=os.listdir(songs_dir)
+            speak("What should I Play sir?")
+            speak("Select a number..")
+            ans=take_command().lower()
+            while("number" not in ans and ans!="random" and ans!="you choose" and ans!="your call"):
+                speak("I could not understand your answer. Please Try again!")
+                ans=take_command().lower()
+            if "number" in ans:
+                no=int(ans.replace("number",""))
+            elif "random" in ans or "you choose" in ans or "your call" in ans:
+                no=random.randint(1,100)
+            
+            os.startfile(os.path.join(songs_dir,music[no]))
