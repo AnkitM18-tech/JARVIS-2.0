@@ -7,6 +7,7 @@ import webbrowser as wb           #in-built
 import psutil                     #pip install psutil
 import pyjokes as pj              #pip install pyjokes
 import os                         #in-built
+import pyautogui as pag           #pip install pyautogui
 
 
 engine=pt3.init()
@@ -85,6 +86,11 @@ def cpu_status():
 def tell_joke():
     speak(pj.get_joke())
 
+def take_screenshot():
+    img=pag.screenshot()
+    strTime=dt.datetime.now().strftime("%H:%M:%S").replace(":","")
+    img.save("C:/Users/ankit/Documents/Github/JARVIS-2.0/"+strTime+".png")
+
 if __name__=="__main__":
     wish_me()
     while True:
@@ -143,7 +149,7 @@ if __name__=="__main__":
         elif "joke" in query:
             tell_joke()
 
-        elif "go offline" in query:
+        elif "offline" in query or "quit" in query:
             speak("Going offline sir!")
             quit()
 
@@ -172,3 +178,6 @@ if __name__=="__main__":
             file=open("notes.txt","r")
             print(file.read())
             speak(file.read())
+
+        elif "screenshot" in query:
+            take_screenshot()
